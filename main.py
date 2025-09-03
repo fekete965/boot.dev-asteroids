@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
 from player import Player
@@ -34,7 +35,7 @@ def main():
     
     player_x = SCREEN_WIDTH / 2
     player_y = SCREEN_HEIGHT / 2
-    Player(player_x, player_y)
+    player = Player(player_x, player_y)
 
     while True:
         for event in pygame.event.get():
@@ -45,8 +46,14 @@ def main():
         
         for unit in updatable:
             unit.update(delta_time)
+            
         for unit in drawable:
             unit.draw(screen)
+        
+        for unit in asteroids:
+            if unit.is_colliding(player):
+                print("Game Over!")
+                sys.exit(1)
         
         pygame.display.flip()
         delta_time = clock.tick(60) / 1000
