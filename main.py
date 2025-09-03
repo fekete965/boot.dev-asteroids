@@ -1,6 +1,7 @@
 import pygame
 
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
+from player import Player
 
 def main():
     print("Starting Asteroids!")
@@ -13,6 +14,10 @@ def main():
     delta_time = 0
     
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    
+    player_x = SCREEN_WIDTH / 2
+    player_y = SCREEN_HEIGHT / 2
+    player = Player(player_x, player_y)
 
     while True:
         for event in pygame.event.get():
@@ -20,6 +25,9 @@ def main():
                 return
     
         screen.fill("black")
+        
+        player.draw(screen)
+        
         pygame.display.flip()
         delta_time = clock.tick(60) / 1000
 
