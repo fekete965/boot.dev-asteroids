@@ -55,10 +55,15 @@ def main():
         for unit in drawable:
             unit.draw(screen)
         
-        for unit in asteroids:
-            if unit.is_colliding(player):
+        for asteroid_obj in asteroids:
+            if asteroid_obj.is_colliding(player):
                 print("Game Over!")
                 sys.exit(1)
+                
+            for bullet_obj in bullets:
+                if asteroid_obj.is_colliding(bullet_obj):
+                    asteroid_obj.kill()
+                    bullet_obj.kill()
         
         pygame.display.flip()
         delta_time = clock.tick(60) / 1000
