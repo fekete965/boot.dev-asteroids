@@ -29,7 +29,14 @@ def main():
         (0, HALF_SCREEN_HEIGHT),
         (HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT),
     ]
-
+    
+    # Initialize the mixer
+    pygame.mixer.init()
+    # Load the background music
+    pygame.mixer.music.load("./assets/audio/background-music.ogg")
+    # Play the background music
+    pygame.mixer.music.play()
+    
     # Setup the group
     asteroids = pygame.sprite.Group()
     drawable = pygame.sprite.Group()

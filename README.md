@@ -5,7 +5,7 @@
 - [ ] Add a scoring system
 - [ ] Add sound system
 - [ ] Add sound effects
-- [ ] Add background music
+- [x] Add background music
 - [ ] Add a menu system
 - [ ] Implement multiple lives and respawning
 - [ ] Add an explosion effect for the asteroids
