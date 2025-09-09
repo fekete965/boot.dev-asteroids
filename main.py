@@ -30,6 +30,11 @@ def main():
         (HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT),
     ]
     
+    # Create sound objects
+    shoot_sound = pygame.mixer.Sound("./assets/audio/shoot.wav")
+    explosion_sound = pygame.mixer.Sound("./assets/audio/explosion.wav")
+    player_die_sound = pygame.mixer.Sound("./assets/audio/player_die.wav")
+    
     # Initialize the mixer
     pygame.mixer.init()
     # Load the background music
@@ -49,12 +54,15 @@ def main():
     
     # Asteroid setup
     Asteroid.containers = (asteroids, drawable, updatable)
+    Asteroid.kill_sound_effect = explosion_sound
     
     # Bullet setup
     Bullet.containers = (bullets, drawable, updatable)
+    Bullet.init_sound_effect = shoot_sound
     
     # Player setup
     Player.containers = (drawable, updatable)
+    Player.kill_sound_effect = player_die_sound
 
     player_x = HALF_SCREEN_WIDTH
     player_y = HALF_SCREEN_HEIGHT
@@ -83,6 +91,7 @@ def main():
         # Check for collisions
         for asteroid_obj in asteroids:
             if asteroid_obj.is_colliding(player):
+                player.kill()
                 print("Game Over!")
                 sys.exit(1)
                 

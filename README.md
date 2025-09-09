@@ -4,7 +4,7 @@
 
 - [ ] Add a scoring system
 - [ ] Add sound system
-- [ ] Add sound effects
+- [x] Add sound effects
 - [x] Add background music
 - [ ] Add a menu system
 - [ ] Implement multiple lives and respawning

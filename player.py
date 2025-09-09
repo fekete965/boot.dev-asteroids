@@ -5,6 +5,8 @@ from circleshape import CircleShape
 from bullet import Bullet
 
 class Player(CircleShape):
+  kill_sound_effect: pygame.mixer.Sound | None = None
+  
   def __init__(self, x, y):
     super().__init__(x, y, PLAYER_RADIUS)
     self.rotation = 0
@@ -53,3 +55,10 @@ class Player(CircleShape):
       self.move(-dt)
     if keys[pygame.K_SPACE]:
       self.shoot(dt)
+
+  def kill(self):
+    super().kill()
+    
+    if self.kill_sound_effect is not None:
+      self.kill_sound_effect.set_volume(0.2)
+      self.kill_sound_effect.play()

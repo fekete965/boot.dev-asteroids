@@ -5,6 +5,8 @@ from circleshape import CircleShape
 from constants import ASTEROID_MIN_RADIUS, ASTEROID_SPLIT_MIN_ANGLE, ASTEROID_SPLIT_MAX_ANGLE, ASTEROID_SPLIT_VELOCITY_MULTIPLIER, SHAPE_COLOR, SHAPE_LINE_WIDTH
 
 class Asteroid(CircleShape):
+  kill_sound_effect: pygame.mixer.Sound | None = None
+  
   def __init__(self, x, y, radius):
     super().__init__(x, y, radius)
     
@@ -34,5 +36,10 @@ class Asteroid(CircleShape):
     angle = self.__get_new_angle()
     self.__create_asteroid_for_split(angle)
     self.__create_asteroid_for_split(-angle)
+
+  def kill(self):
+    super().kill()
     
-    
+    if self.kill_sound_effect is not None:
+      self.kill_sound_effect.set_volume(0.25)
+      self.kill_sound_effect.play()
